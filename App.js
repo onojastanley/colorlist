@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-    backgroundColor:'yellow',
+import React, { Component } from 'react'
+import {
+  StyleSheet,
+  ScrollView
+} from 'react-native'
 
+import ColorButton from './components/colorButton'
+
+class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      backgroundColor: 'yellow'
     }
     this.changeColor = this.changeColor.bind(this)
   }
@@ -15,41 +21,25 @@ class App extends React.Component {
   }
 
   render() {
-    const backgroundColor = this.state.backgroundColor;
+    const { backgroundColor } = this.state
     return (
-      <View style={[styles.container,{backgroundColor} ]}>
-        <Text style={styles.button}
-          onPress={() => this.changeColor('yellow')}>yellow</Text>
-              <Text style={styles.button}
-          onPress={() => this.changeColor('green')}>green</Text>
-        <Text style={styles.button}
-          onPress={() => this.changeColor('red')}>red</Text>
-        
-      </View>
-    );
+      <ScrollView style={[styles.container,{backgroundColor}]}>
+        <ColorButton backgroundColor="red"
+          onSelect={this.changeColor} />
+        <ColorButton backgroundColor="blue"
+          onSelect={this.changeColor} />
+        <ColorButton backgroundColor="green"
+          onSelect={this.changeColor} />
+      </ScrollView>
+    )
   }
 }
-const styles = StyleSheet.create(
-  {
-    container: {
-      flex: 1,
-      backgroundColor: 'blue',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    button: {
-      fontSize: 30,
-      margin: 10,
-      padding: 10,
-      borderWidth: 2,
-      borderRadius: 10,
-      alignSelf: 'stretch',
-      textAlign: 'center'
-    }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20
   }
-
-
-);
-
+})
 
 export default App;
